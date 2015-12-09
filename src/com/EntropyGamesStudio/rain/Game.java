@@ -10,6 +10,8 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import com.EntropyGamesStudio.rain.graphics.Screen;
+
 public class Game extends Canvas implements Runnable{ 
 	private static final long serialVersionUID = 1L;
 	
@@ -21,14 +23,17 @@ public class Game extends Canvas implements Runnable{
 	private JFrame frame;
 	private boolean running = false;
 	
-	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Creates an image.
-	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); // Allows access to the image.
+	private Screen screen;
+	
+	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); //Creates an image.
+	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); //Allows access to the image.
 	
 	public Game(){
 		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
 		
 		frame = new JFrame(); 
+		screen = new Screen(this.width, this.height);
 	}
 	
 	public synchronized void start() {
